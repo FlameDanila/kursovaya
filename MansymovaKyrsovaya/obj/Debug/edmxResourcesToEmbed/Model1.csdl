@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OcenkiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="OcenkiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="groups" EntityType="OcenkiModel.groups" />
+    <EntitySet Name="students" EntityType="OcenkiModel.students" />
+    <EntitySet Name="sysdiagrams" EntityType="OcenkiModel.sysdiagrams" />
+    <EntitySet Name="kurators" EntityType="OcenkiModel.kurators" />
+    <AssociationSet Name="FK_groups_kurators" Association="OcenkiModel.FK_groups_kurators">
+      <End Role="kurators" EntitySet="kurators" />
+      <End Role="groups" EntitySet="groups" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kuratorid" Type="Int32" />
+    <NavigationProperty Name="kurators" Relationship="OcenkiModel.FK_groups_kurators" FromRole="groups" ToRole="kurators" />
+  </EntityType>
+  <EntityType Name="students">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="groupId" Type="Int32" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="math" Type="Int32" />
+    <Property Name="rus" Type="Int32" />
+    <Property Name="literature" Type="Int32" />
+    <Property Name="fizra" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="kurators">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="groups" Relationship="OcenkiModel.FK_groups_kurators" FromRole="kurators" ToRole="groups" />
+    <Property Name="groupid" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_groups_kurators">
+    <End Type="OcenkiModel.kurators" Role="kurators" Multiplicity="0..1" />
+    <End Type="OcenkiModel.groups" Role="groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kurators">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="groups">
+        <PropertyRef Name="kuratorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

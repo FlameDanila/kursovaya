@@ -1,0 +1,51 @@
+﻿<Window x:Class="MansymovaKyrsovaya.ocenki"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MansymovaKyrsovaya"
+        mc:Ignorable="d"
+        Title="Оценки" Height="520" Width="1064" MinHeight="520" MinWidth="1064" MaxWidth="1064" MaxHeight="520" WindowStartupLocation="CenterScreen" >
+    <Grid Background="#FF42AF3F">
+        <Border CornerRadius="40" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFDBE2EF" BorderBrush="#FF0F78BB" BorderThickness="1" RenderTransformOrigin="0.5,0.5" Width="908" Height="444">
+            <Grid Width="799" Height="504" VerticalAlignment="Center" Margin="0,0,-1,0" HorizontalAlignment="Center">
+                <Button x:Name="regButton" Margin="0,411,0,0" Content="Сгенерировать отчет" FontSize="20" Foreground="White" Background="#FF217541" MinHeight="40" MinWidth="169"  Width="223" HorizontalAlignment="Center" Height="47" VerticalAlignment="Top" Click="regButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <ListView x:Name="list" Margin="0,129,0,98" Background="{x:Null}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding name}" FontSize="30" Width="200"/>
+                                    <Grid Width="50"/>
+                                    <TextBlock Text="{Binding math}" FontSize="40"/>
+                                    <Grid Width="120"/>
+                                    <TextBlock Text="{Binding rus}" FontSize="40"/>
+                                    <Grid Width="120"/>
+                                    <TextBlock Text="{Binding literature}" FontSize="40"/>
+                                    <Grid Width="120"/>
+                                    <TextBlock Text="{Binding fizra}" FontSize="40"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBlock HorizontalAlignment="Left" Margin="0,97,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Language="ru-ru" Text="Имя"/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="151,97,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Text="Оцен"/><Run Text="к"/><Run Text="и"/><Run Text=":"/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="243,97,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Language="ru-ru" Text="Математика"/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="373,97,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Language="ru-ru" Text="Русский язык"/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="512,97,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Language="ru-ru" Text="Литература"/></TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="648,97,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Language="ru-ru" Text="Физкультура"/></TextBlock>
+            </Grid>
+        </Border>
+        <ComboBox x:Name="groups" HorizontalAlignment="Center" Margin="0,49,0,0" VerticalAlignment="Top" Width="186" Background="#FF3F72AF" FontSize="20" BorderBrush="{x:Null}" Height="37" SelectionChanged="groups_SelectionChanged"/>
+        <Button HorizontalAlignment="Left" Height="29" Margin="881,53,0,0" VerticalAlignment="Top" Width="48" Content="Выход" Click="Image_MouseLeftButtonDown" Background="{x:Null}" BorderBrush="#FF707070"/>
+        <Button Visibility="Hidden" x:Name="button" HorizontalAlignment="Left" Height="29" Margin="131,53,0,0" VerticalAlignment="Top" Width="111" Content="Поменять оценки" Background="{x:Null}" BorderBrush="#FF707070" Click="button_Click"/>
+        <Button x:Name="sbros" HorizontalAlignment="Left" Height="29" Margin="630,53,0,0" VerticalAlignment="Top" Width="48" Content="Сброс" Background="{x:Null}" BorderBrush="#FF707070" Click="sbros_Click"/>
+    </Grid>
+</Window>
